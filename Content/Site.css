@@ -1,0 +1,55 @@
+﻿body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+    background-image: url('../Assets/Images/bg-image-2.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+
+
+.promo-window {
+    width: 848px;
+    min-height: 786px;
+    background: #000000;
+    color: #ffffff !important;
+    box-shadow: 0px 0px 10px rgb(128, 128, 128);
+    margin: auto;
+    padding: 15px;
+}
+
+    .promo-window .header {
+        font-size: 48px;
+        font-size-adjust: 0.58;
+        text-align: center;
+        color: #ffffff !important;
+    }
+
+    .promo-window .counter-led-screen {
+        width: 600px;
+    }
+
+        .promo-window .counter-led-screen .counter-led {
+            border: 1px solid #FFFFFF;
+            text-align: center;
+        }

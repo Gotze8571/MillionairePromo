@@ -1,0 +1,93 @@
+﻿
+@{
+    ViewBag.Title = "::... FCMB  MILLIONAIRE PROMO ..:::";
+}
+
+
+<div class="promo-window">
+    <div class="overflow-hidden">
+        <div class="d-flex float-right overflow-hidden h4 text-white">
+            <div class="mr-2 line-height-30px">Timer:</div>
+            <div class="min-width-160px text-right h2 text-white m-0 p-0" id="timer-label">00:00:00</div>
+        </div>
+    </div>
+    <div class="mb-4">
+        <h1 class="header">Millionaire Promo Selector</h1>
+    </div>
+    <div id="view-1">
+        <fieldset class="border-0 rounded-0 bg-black border-white overflow-hidden min-height-20px p-3 mb-0">
+            <div class="d-flex justify-content-between">
+                <div class="d-flex">
+                    <div class="custom-control custom-radio custom-control-inline">
+                        <input type="radio" id="customRadioInline1" name="customRadioInline1" value="region" class="custom-control-input" checked="checked" onchange="getQualified(event)">
+                        <label class="custom-control-label cursor-pointer" for="customRadioInline1">Region</label>
+                    </div>
+                    <div class="custom-control custom-radio custom-control-inline">
+                        <input type="radio" id="customRadioInline2" name="customRadioInline1" value="branch" class="custom-control-input" onchange="getQualified(event)">
+                        <label class="custom-control-label cursor-pointer" for="customRadioInline2">Branch</label>
+                    </div>
+                </div>
+                <div>
+                    <button id="view-winners-button" class="border-1 rounded-0 border-white text-white btn btn-outline-dark mr-2 pl-2 pr-2 border-radius-0">View Winners</button>
+                </div>
+            </div>
+        </fieldset>
+        <fieldset class="border-1 rounded-0 bg-black border-white overflow-hidden min-height-100px p-3 mb-3">
+            <legend>Settings</legend>
+            <div class="d-flex justify-content-between">
+                <div class="w-50 m-0 text-white">
+                    <h5 class="float-left mr-2 text-white line-height-40px">No of Enteries:</h5>
+                    <h5 class="text-white line-height-40px">0.00</h5>
+                </div>
+                <div class="d-flex justify-content-end align-content-end">
+                    <button id="start-button" class="border-1 rounded-0 border-white text-white btn btn-lg btn-outline-dark mr-2 pl-2 pr-2 border-radius-0">Start</button>
+                    <button id="stop-button" disabled="disabled" class="border-1 rounded-0 border-white text-white btn btn-lg btn-outline-dark mr-2 pl-2 pr-2 border-radius-0">Stop</button>
+                    <button id="admit-winner-button" disabled="disabled" class="border-1 rounded-0 border-white text-white btn btn-lg btn-outline-dark mr-2 pl-2 pr-2 border-radius-0">Admit Winner</button>
+                    <button id="close-button" disabled="disabled" class="border-1 rounded-0 border-white text-white btn btn-lg btn-outline-dark mr-2 pl-2 pr-2 border-radius-0">Clear & Restart</button>
+                </div>
+            </div>
+        </fieldset>
+        <div class="border-1 rounded-0 bg-black border-white overflow-hidden min-width-100px min-height-100px p-4 mb-3">
+            <div class="counter-led-screen d-flex justify-content-center mx-auto">
+                <div id="led-1" class="counter-led text-white min-width-130px min-height-100px line-height-120px font-size-80px">00</div>
+                <div id="led-2" class="counter-led text-white min-width-130px min-height-100px line-height-120px font-size-80px">00</div>
+                <div id="led-3" class="counter-led text-white min-width-130px min-height-100px line-height-120px font-size-80px">00</div>
+                <div id="led-4" class="counter-led text-white min-width-130px min-height-100px line-height-120px font-size-80px">00</div>
+                <div id="led-5" class="counter-led text-white min-width-130px min-height-100px line-height-120px font-size-80px">00</div>
+            </div>
+        </div>
+        <fieldset class="border-1 rounded-0 bg-black border-white overflow-hidden min-height-100px p-4 mb-3">
+            <legend>Account Number</legend>
+            <div>
+                <h1 id="winner-account-number" class="text-center font-weight-bolder mb-0 line-height-100px font-size-80px text-white">0000000000</h1>
+            </div>
+        </fieldset>
+        <fieldset class="border-1 rounded-0 bg-black border-white overflow-hidden min-height-100px p-4 mb-3">
+            <legend>Winning Account Name</legend>
+            <div>
+                <h1 id="winner-account-name" class="text-center">&nbsp;</h1>
+            </div>
+        </fieldset>
+        <fieldset class="border-1 rounded-0 bg-black border-white overflow-hidden min-height-100px p-4 mb-3">
+            <legend>Winning Mobile Number</legend>
+            <div>
+                <h1 id="winner-mobile-number" class="text-center">&nbsp;</h1>
+            </div>
+        </fieldset>
+    </div>
+
+    <div id="view-2">
+        <fieldset class="border-0 rounded-0 bg-black border-white overflow-hidden min-height-20px p-3 mb-0">
+            <div class="d-flex justify-content-between">
+                <div class="d-flex">
+                    
+                </div>
+                <div>
+                    <button id="return-button" class="border-1 rounded-0 border-white text-white btn btn-outline-dark mr-2 pl-2 pr-2 border-radius-0">Back to Lottery Board</button>
+                </div>
+            </div>
+        </fieldset>
+
+        <div class="border-0 rounded-0 bg-black border-white min-height-20px p-3 mb-0" id="winners-datagrid-container"></div>
+    </div>
+</div>

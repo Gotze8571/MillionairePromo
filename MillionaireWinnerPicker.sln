@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29613.14
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MillionaireWinnerPicker", "MillionaireWinnerPicker.csproj", "{51B41ACA-0651-496E-847D-009549AB12B5}"
+EndProject
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "DataAccessLayer", "..\MillionaireWinnerPickerDataAccessLayer\DataAccessLayer.vbproj", "{6194DF84-1DE8-48A3-BBFA-4B25072AA14E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{51B41ACA-0651-496E-847D-009549AB12B5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{51B41ACA-0651-496E-847D-009549AB12B5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{51B41ACA-0651-496E-847D-009549AB12B5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{51B41ACA-0651-496E-847D-009549AB12B5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6194DF84-1DE8-48A3-BBFA-4B25072AA14E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6194DF84-1DE8-48A3-BBFA-4B25072AA14E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6194DF84-1DE8-48A3-BBFA-4B25072AA14E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6194DF84-1DE8-48A3-BBFA-4B25072AA14E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {6604A4A5-B151-4373-8A23-0FEDFF0E50A3}
+	EndGlobalSection
+EndGlobal

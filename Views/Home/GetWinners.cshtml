@@ -1,0 +1,50 @@
+﻿@model IEnumerable<DataAccessLayer.DataAccessLayer.QualifiedMillionaireWinner>
+
+<table class="table table-light">
+    <thead>
+        <tr>
+            <th>
+                Account No.:
+            </th>
+            <th>
+                Account Name:
+            </th>
+            <th>
+                Mobile No.:
+            </th>
+            <th>
+                Branch Code:
+            </th>
+            <th>
+                Date:
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AccountNo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AccountName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MobileNo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BranchCode)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PostedDate)
+                </td>
+                <td>
+                    @*@Html.ActionLink("Delete", "Delete", new { id = item.Id })*@
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
