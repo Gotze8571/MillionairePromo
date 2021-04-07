@@ -1,5 +1,8 @@
-﻿using System;
+﻿using MillionaireWinnerPicker.ADService;
+using MillionaireWinnerPicker.DAL;
+using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Web;
 
@@ -15,7 +18,29 @@ namespace MillionaireWinnerPicker.Models
         }
         public bool ValidLogin(string UserId, string password, string hostname)
         {
-            // var obj = new AuthenticationService();
+             var obj = new AuthenticationService();
+
+            var appId = ConfigurationManager.AppSettings["AppID"];
+            var appKey = ConfigurationManager.AppSettings["AppKey"];
+            string userGroup = "";
+            bool isValidUser = false;
+            int thisUserId = 0;
+
+            try
+            {
+                using (RoleDBContext roleDb = new RoleDBContext())
+                {
+                    // save roles if any exist
+                    if (!roleDb.Roles.Any())
+                    {
+                        
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex);
+            }
             return false;
         }
     }
