@@ -20,11 +20,11 @@
                 <div class="d-flex">
                     <div class="custom-control custom-radio custom-control-inline">
                         <input type="radio" id="customRadioInline1" name="customRadioInline1" value="region" class="custom-control-input" checked="checked" onchange="getQualified(event)">
-                        <label class="custom-control-label cursor-pointer" for="customRadioInline1">Region</label>
+                        <label class="custom-control-label cursor-pointer" id="regional-button" for="customRadioInline1">Region</label>
                     </div>
                     <div class="custom-control custom-radio custom-control-inline">
                         <input type="radio" id="customRadioInline2" name="customRadioInline1" value="branch" class="custom-control-input" onchange="getQualified(event)">
-                        <label class="custom-control-label cursor-pointer" for="customRadioInline2">Branch</label>
+                        <label class="custom-control-label cursor-pointer" id="branch-button" for="customRadioInline2">Branch</label>
                     </div>
                 </div>
                 <div>
@@ -37,7 +37,7 @@
             <div class="d-flex justify-content-between">
                 <div class="w-50 m-0 text-white">
                     <h5 class="float-left mr-2 text-white line-height-40px">No of Enteries:</h5>
-                    <h5 class="text-white line-height-40px">0.00</h5>
+                    <h5 class="text-white line-height-40px" onchange="getNumberEntries()">0.00</h5>
                 </div>
                 <div class="d-flex justify-content-end align-content-end">
                     <button id="start-button" class="border-1 rounded-0 border-white text-white btn btn-lg btn-outline-dark mr-2 pl-2 pr-2 border-radius-0">Start</button>
