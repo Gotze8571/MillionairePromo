@@ -275,12 +275,6 @@
     <Content Include="Scripts\jquery-3.4.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\MillionaireWinnerPickerDataAccessLayer\DataAccessLayer.vbproj">
-      <Project>{6194df84-1de8-48a3-bbfa-4b25072aa14e}</Project>
-      <Name>DataAccessLayer</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <ItemGroup>
@@ -298,6 +292,12 @@
       <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
       <CachedSettingsPropName>MillionaireWinnerPicker_ADService_AuthenticationService</CachedSettingsPropName>
     </WebReferenceUrl>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Promo.Picker.Core\Promo.Picker.Core.csproj">
+      <Project>{b34d4b64-9fa0-4aad-a45e-f478de57cee2}</Project>
+      <Name>Promo.Picker.Core</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
