@@ -6,6 +6,7 @@ using System.Web.Mvc;
 //using DataAccessLayer.DataAccessLayer;
 using Newtonsoft.Json;
 using Promo.Picker.Core.BuisnessLogic;
+using Promo.Picker.Core.BusinessObject;
 
 namespace MillionaireWinnerPicker.Controllers
 {
@@ -43,19 +44,22 @@ namespace MillionaireWinnerPicker.Controllers
         }
 
         //[HttpPost, ActionName("admitwinner")]
-        //public ActionResult AdmitWinner(QualifiedMillionaireWinner qualifiedMillionaireWinner)
-        //{
-        //    try
-        //    {
-        //        this.db.QualifiedMillionaireWinners.Add(qualifiedMillionaireWinner);
-        //        this.db.SaveChanges();
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        //
-        //    }
-        //    return this.Json(new { winner = qualifiedMillionaireWinner }, JsonRequestBehavior.AllowGet);
-        //}
+        public ActionResult AdmitWinner(QualifiedMillionaire qualifiedMillionaireWinner)
+        {
+            try
+            {
+                var qualifiedWinnerList = QualifiedMillionaireManager.AddNew(qualifiedMillionaireWinner);
+                return this.Json(new { winner = qualifiedMillionaireWinner }, JsonRequestBehavior.AllowGet);
+                //this.db.QualifiedMillionaire.Add(qualifiedMillionaireWinner);
+                //this.db.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                //
+            }
+            return null;
+        }
+
         //[HttpPost, ActionName("admitwinner")]
         //public ActionResult AdmitWinner(QualifiedMillionaireWinner qualifiedMillionaireWinner)
         //{
@@ -77,6 +81,13 @@ namespace MillionaireWinnerPicker.Controllers
             //var qualifiedMillionairesList = this.db.QualifiedMillionaireWinners.ToList();
             var qualifiedMillionairesList = QualifiedMillionaireManager.GetList();
             return PartialView(qualifiedMillionairesList);
+        }
+
+        // Get no. of winners in a List.
+        public ActionResult GetCountOfMillionaires(int entry)
+        {
+            var NoOfEntiries = QualifiedMillionaireManager.NoOfEntries(entry);
+            return this.Json(JsonConvert.SerializeObject(NoOfEntiries), JsonRequestBehavior.AllowGet);
         }
 
         public ActionResult About()

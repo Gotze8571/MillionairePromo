@@ -178,10 +178,10 @@
   <ItemGroup>
     <Content Include="Assets\Images\2021-FEMALE-FA.jpg" />
     <Content Include="Assets\Images\bg-image-1.jpg" />
-    <Content Include="Assets\Images\bg-image-2.jpg" />
     <Content Include="Assets\Images\bg-image-3.jpg" />
     <Content Include="Assets\Images\bg-image.jpg" />
     <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\customizeLogin.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />

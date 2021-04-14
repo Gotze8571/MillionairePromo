@@ -1,5 +1,12 @@
-﻿@model IEnumerable<DataAccessLayer.DataAccessLayer.QualifiedMillionaireWinner>
+﻿@model IEnumerable<Promo.Picker.Core.BusinessObject.QualifiedMillionaire>
 
+<div id="excelbtn" style="float:right" class="form-group">
+    @Html.ActionLink("Export To Excel", "ExportToExcel", "", new { startDate = ViewBag.startDate, endDate = ViewBag.endDate }, new { @class = "btn btnClass", startDate = ViewBag.startDate, endDate = ViewBag.endDate })
+</div>
+
+<div id="pdfbtn" style="float:right" class="form-group">
+    @Html.ActionLink("Export To Pdf", "PromoViewToPdf", "", new { startDate = ViewBag.startDate, endDate = ViewBag.endDate }, new { @class = "btn btnClass", startDate = ViewBag.startDate, endDate = ViewBag.endDate })
+</div>
 <table class="table table-light">
     <thead>
         <tr>

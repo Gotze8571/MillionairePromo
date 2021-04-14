@@ -1,7 +1,7 @@
 ﻿body {
     padding-top: 50px;
     padding-bottom: 20px;
-    background-image: url('../Assets/Images/bg-image-2.jpg');
+    background-image: url('../Assets/Images/2021-FEMALE-FA.jpg');
     background-size: cover;
     background-repeat: no-repeat;
 }
@@ -26,6 +26,17 @@ textarea {
     max-width: 280px;
 }
 
+/*.login100-form-logo {*/
+    /* The image used */
+    /*background-image: url('../Assets/Images/2021-FEMALE-FA.jpg');*/
+    /* Control the height of the image */
+    /*min-height: 380px;*/
+    /* Center and scale the image nicely */
+    /*background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+}*/
 
 
 .promo-window {

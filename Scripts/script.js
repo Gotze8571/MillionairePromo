@@ -29,7 +29,7 @@
             counter += 1;
 
             timerCounter();
-        }, 1000);
+        }, 100000);
     };
     timerCounter();
 
@@ -154,7 +154,7 @@
                 qualifiedMillionairesList = JSON.parse(response);
             });
         } else {
-            $.get(baseUrl + "/home/getregionalmillionaires").then(function (response) {
+            $.get(baseUrl + "/getregionalmillionaires").then(function (response) {
                 qualifiedMillionairesList = JSON.parse(response);
             });
         }
