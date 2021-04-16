@@ -14,7 +14,6 @@ namespace MillionaireWinnerPicker.Models
         private static NLog.Logger logger = NLog.LogManager.GetCurrentClassLogger();
         public LoginUserDb()
         {
-           
         }
         public bool ValidLogin(string UserId, string password, string hostname)
         {
@@ -22,19 +21,14 @@ namespace MillionaireWinnerPicker.Models
 
             var appId = ConfigurationManager.AppSettings["AppID"];
             var appKey = ConfigurationManager.AppSettings["AppKey"];
-            string userGroup = "";
             bool isValidUser = false;
             int thisUserId = 0;
 
             try
             {
-                using (RoleDBContext roleDb = new RoleDBContext())
+                if((UserId != "") && (password != ""))
                 {
-                    // save roles if any exist
-                    if (!roleDb.Roles.Any())
-                    {
-                        
-                    }
+                    return true;
                 }
             }
             catch (Exception ex)

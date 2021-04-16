@@ -7,6 +7,8 @@ using System.Web.Mvc;
 using Newtonsoft.Json;
 using Promo.Picker.Core.BuisnessLogic;
 using Promo.Picker.Core.BusinessObject;
+using Promo.Picker.Core.BusinessObject.Collections;
+using Promo.Picker.Core.DataAccess;
 
 namespace MillionaireWinnerPicker.Controllers
 {
@@ -48,6 +50,7 @@ namespace MillionaireWinnerPicker.Controllers
         {
             try
             {
+                //var qualifiedWinnerList = QualifiedMillionaireManager.AddNew(qualifiedMillionaireWinner);
                 var qualifiedWinnerList = QualifiedMillionaireManager.AddNew(qualifiedMillionaireWinner);
                 return this.Json(new { winner = qualifiedMillionaireWinner }, JsonRequestBehavior.AllowGet);
                 //this.db.QualifiedMillionaire.Add(qualifiedMillionaireWinner);
@@ -102,6 +105,25 @@ namespace MillionaireWinnerPicker.Controllers
             ViewBag.Message = "Your contact page.";
 
             return View();
+        }
+        public ActionResult SPLViewToPdf()
+        {
+            QualifiedMillionaireDB db = new QualifiedMillionaireDB();
+
+            QualifiedMillionaireList list = new QualifiedMillionaireList();
+            //list = db.;
+
+
+            //logger.Info("SPL Report exported successfully");
+
+
+            //return new PartialViewAsPdf("~/Views/Shared/ExportToPdfSPL.cshtml", list)
+            //{
+            //    //FileName = Server.MapPath("~/Content/Relato.pdf"),
+            //    PageOrientation = Rotativa.Options.Orientation.Landscape,
+            //    PageSize = Rotativa.Options.Size.A4
+            //};
+            return null;
         }
     }
 }

@@ -22,7 +22,7 @@ namespace MillionaireWinnerPicker.Controllers
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
+       // [ValidateAntiForgeryToken]
         public ActionResult Index(User user, string returnUrl)
         {
             logger.Info("NEW LOGIN");

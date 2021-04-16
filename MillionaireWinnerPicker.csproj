@@ -177,6 +177,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Assets\Images\2021-FEMALE-FA.jpg" />
+    <Content Include="Assets\Images\2021-FEMALE-FA2.jpg" />
     <Content Include="Assets\Images\bg-image-1.jpg" />
     <Content Include="Assets\Images\bg-image-3.jpg" />
     <Content Include="Assets\Images\bg-image.jpg" />

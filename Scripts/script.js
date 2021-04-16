@@ -1,6 +1,7 @@
 ﻿window.addEventListener("DOMContentLoaded", function () {
     var counter = 1;
 
+    var noOfEntriesAccountNumber = document.getElementById("EntriesNo");
     var startButton = document.getElementById("start-button");
     var stopButton = document.getElementById("stop-button");
     var admitWinnerButton = document.getElementById("admit-winner-button");
@@ -63,7 +64,7 @@
         view1.setAttribute("class", "d-none");
         view2.setAttribute("class", "d-block");
 
-        $.get(baseUrl + "/home/GetWinners").then(function (response) {
+        $.get(baseUrl + "/GetWinners").then(function (response) {
             console.log(response);
             document.getElementById("winners-datagrid-container").innerHTML = response;
         });
@@ -131,6 +132,11 @@
         init();
     };
 
+    // Get number of Account in the database.
+    noOfEntriesAccountNumber = function () {
+        document.getElementById("EntriesNo").innerHTML
+    };
+
     getWinnerDetails = function () {
         document.getElementById("winner-account-number").innerHTML = winnerAccountDetails.AccountNo;
         document.getElementById("winner-account-name").innerHTML = winnerAccountDetails.AccountName;
@@ -141,7 +147,7 @@
         var confirm = window.confirm("Are you sure you want to continue?");
         if (confirm) {
             admitWinnerButton.disabled = true;
-            $.post(baseUrl + "/home/admitwinner", winnerAccountDetails).then(function (response) {
+            $.post(baseUrl + "/admitwinner", winnerAccountDetails).then(function (response) {
                 restartLottery();
                 alert("Congratulations, winner admitted successfully.");
             });
@@ -150,7 +156,7 @@
 
     getQualified = function (evt) {
         if ((evt) && (evt.target.value)) { // branch
-            $.get(baseUrl + "/home/getbranchmillionaires").then(function (response) {
+            $.get(baseUrl + "/getbranchmillionaires").then(function (response) {
                 qualifiedMillionairesList = JSON.parse(response);
             });
         } else {

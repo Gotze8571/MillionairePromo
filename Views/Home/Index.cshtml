@@ -1,4 +1,4 @@
-﻿
+﻿@model IEnumerable<Promo.Picker.Core.BusinessObject.QualifiedMillionaire>
 @{
     ViewBag.Title = "::... FCMB  MILLIONAIRE PROMO ..:::";
 }
@@ -37,7 +37,7 @@
             <div class="d-flex justify-content-between">
                 <div class="w-50 m-0 text-white">
                     <h5 class="float-left mr-2 text-white line-height-40px">No of Enteries:</h5>
-                    <h5 class="text-white line-height-40px" onchange="getNumberEntries()">0.00</h5>
+                    <h5 class="text-white line-height-40px" id="EntriesNo" onchange="getNumberEntries()">0.00</h5>
                 </div>
                 <div class="d-flex justify-content-end align-content-end">
                     <button id="start-button" class="border-1 rounded-0 border-white text-white btn btn-lg btn-outline-dark mr-2 pl-2 pr-2 border-radius-0">Start</button>
@@ -80,7 +80,7 @@
         <fieldset class="border-0 rounded-0 bg-black border-white overflow-hidden min-height-20px p-3 mb-0">
             <div class="d-flex justify-content-between">
                 <div class="d-flex">
-                    
+
                 </div>
                 <div>
                     <button id="return-button" class="border-1 rounded-0 border-white text-white btn btn-outline-dark mr-2 pl-2 pr-2 border-radius-0">Back to Lottery Board</button>
