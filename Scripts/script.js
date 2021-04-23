@@ -1,7 +1,7 @@
 ﻿window.addEventListener("DOMContentLoaded", function () {
     var counter = 1;
 
-    var noOfEntriesAccountNumber = document.getElementById("EntriesNo");
+    var noOfEntriesAccountNumber;
     var startButton = document.getElementById("start-button");
     var stopButton = document.getElementById("stop-button");
     var admitWinnerButton = document.getElementById("admit-winner-button");
@@ -12,6 +12,7 @@
     var baseUrl = window.location.href;
 
     var winnerAccountDetails;
+    var getdropdownList;
 
     random = function (seed) {
         var rnd = Math.floor(Math.random() * Math.floor(seed));
@@ -21,18 +22,18 @@
             return Math.floor(Math.random());
         }
     };
+    // Stop watch 
+    //timerCounter = function () {
+    //    setTimeout(function () {
+    //        var today = new Date();
+    //        var time = today.toLocaleTimeString();
+    //        document.getElementById("timer-label").innerHTML = time;
+    //        counter += 1;
 
-    timerCounter = function () {
-        setTimeout(function () {
-            var today = new Date();
-            var time = today.toLocaleTimeString();
-            document.getElementById("timer-label").innerHTML = time;
-            counter += 1;
-
-            timerCounter();
-        }, 100000);
-    };
-    timerCounter();
+    //        timerCounter();
+    //    }, 100000);
+    //};
+    //timerCounter();
 
     var buttons = document.getElementsByTagName("button");
     Array.prototype.forEach.call(buttons, function (button, index) {
@@ -90,6 +91,9 @@
             var entries = qualifiedMillionairesList;
             var numberOfEntries = entries.length;
             var offset = (numberOfEntries - 1) * random(numberOfEntries);
+            console.log(numberOfEntries)
+            console.log(offset)
+            console.log(entries)
             accountDetails = entries[random(numberOfEntries)];
             var accountNumber = accountDetails.AccountNo;
 
@@ -134,8 +138,16 @@
 
     // Get number of Account in the database.
     noOfEntriesAccountNumber = function () {
-        document.getElementById("EntriesNo").innerHTML
+        $.post(baseUrl + "/getnoOfEntries").then(function (response) {
+            NoOfEntiries = JSON.parse(response);
+        });
     };
+    
+    ////
+    noOfEntriesAccountNumberA = function () {
+        document.getElementById("EntriesNo").innerHTML = NoOfEntiries.number;
+    };
+    ///
 
     getWinnerDetails = function () {
         document.getElementById("winner-account-number").innerHTML = winnerAccountDetails.AccountNo;
@@ -160,7 +172,7 @@
                 qualifiedMillionairesList = JSON.parse(response);
             });
         } else {
-            $.get(baseUrl + "/getregionalmillionaires").then(function (response) {
+            $.get(baseUrl + "/getRegion").then(function (response) {
                 qualifiedMillionairesList = JSON.parse(response);
             });
         }
@@ -187,4 +199,121 @@
         getQualified();
     };
     init();
+    // Set the date we're counting down to
+    var setDate = "May 30, 2021 15:37:25";
+    var countDownDate = new Date(setDate).getTime();
+    //var countDownDate = new Date("May 30, 2021 15:37:25").getTime();
+
+    // Update the count down every 1 second
+    var x = setInterval(function () {
+
+        // Get today's date and time
+        var now = new Date().getTime();
+
+        // Find the distance between now and the count down date
+        var distance = countDownDate - now;
+
+        // Time calculations for days, hours, minutes and seconds
+        var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        // Output the result in an element with id="demo"
+        document.getElementById("timer-label").innerHTML = days + "d " + hours + "h "
+            + minutes + "m " + seconds + "s ";
+
+        // If the count down is over, write some text 
+        if (distance < 0) {
+            clearInterval(x);
+            document.getElementById("timer-label").innerHTML = "EXPIRED";
+        }
+    }, 1000);
+
+    // populating dropdown
+
+    getdropdownList = function populate(s1, s2, s3)
+    {
+        var s1 = document.getElementById(s1);
+        var s2 = document.getElementById(s2);
+        s2.innerHTML = "";
+        if (s1.value == "LAGOS") {
+            var optionArray = ["|", "l|LAGOS", "n|NORTH", "sess|SOUTHEAST&SOUTHSOUTH", "sw|SOUTHWEST"];
+        }
+        for (var option in optionArray) {
+            var pair = optionArray[option].split("|");
+            var newOption = document.createElement("option");
+            newOption.value = pair[0];
+            newOption.innerHTML = pair[1];
+            s2.option.add(newOption);
+        }
+    }
+
+    // populating 
+    $(document).ready(function () {
+        //Populate Region
+       
+            $.ajax({
+                type: "Get",
+                /*url: "/EnquiryRegister/EnquiryReasonSubTypeList?enquiryReasonId=" + regionId,*/
+                url: "Home/getRegion?regCode",
+                contentType: "html",
+                success: function (response) {
+                    $("#regionId").html("");                    
+
+                    let objArray = $.parseJSON(response)
+                    
+                    objArray.forEach(function (arrayElem) { 
+
+                        $("#regionId").append(new Option(arrayElem.Name, arrayElem.Id));
+                    });
+                    //debugger
+                    
+                }
+            })
+        
+
+        $("#regionId").change(function () {
+            var regionalId = $(this).val();
+            //debugger
+            $.ajax({
+                type: "Get",
+            /*url: "/EnquiryRegister/EnquiryReasonSubTypeList?enquiryReasonId=" + regionId,*/
+                url: "Home/getZone?regCode=" + regionalId,
+                contentType: "html",
+                success: function (response) {
+                    $("#zoneId").html("");
+
+                    console.log(response)
+
+                    let objArray = $.parseJSON(response)
+                    console.log(objArray)
+                    objArray.forEach(function (arrayElem) {
+
+
+                        $("#zoneId").append(new Option(arrayElem.Name, arrayElem.Id));
+                    });
+                }
+            })
+        });
+        $("#zoneId").change(function () {
+            var selected = $("#zoneId option:selected").text();
+            var zoneTypeId = $(this).val();
+            $("#branchId").html(selected);
+            //debugger
+            $.ajax({
+                type: "Post",
+                //url: "/EnquiryRegister/ContactTypeDetail?contactTypeId=" + zoneTypeId,
+                url: "/Zone/Branch?zoneId=" + zoneTypeId,
+                contentType: "html",
+                success: function (response) {
+                    // debugger
+                    $("#branchId").empty();
+                    $("#branchId").append(response);
+                }
+            })
+        });
+
+    });
+
 });

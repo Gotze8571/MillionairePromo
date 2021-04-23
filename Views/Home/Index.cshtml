@@ -9,6 +9,8 @@
         <div class="d-flex float-right overflow-hidden h4 text-white">
             <div class="mr-2 line-height-30px">Timer:</div>
             <div class="min-width-160px text-right h2 text-white m-0 p-0" id="timer-label">00:00:00</div>
+            <br />
+            <div><a href="~/Login/Index">Logout</a></div>
         </div>
     </div>
     <div class="mb-4">
@@ -18,15 +20,70 @@
         <fieldset class="border-0 rounded-0 bg-black border-white overflow-hidden min-height-20px p-3 mb-0">
             <div class="d-flex justify-content-between">
                 <div class="d-flex">
-                    <div class="custom-control custom-radio custom-control-inline">
+                    @*<div class="custom-control custom-radio custom-control-inline">
                         <input type="radio" id="customRadioInline1" name="customRadioInline1" value="region" class="custom-control-input" checked="checked" onchange="getQualified(event)">
                         <label class="custom-control-label cursor-pointer" id="regional-button" for="customRadioInline1">Region</label>
                     </div>
                     <div class="custom-control custom-radio custom-control-inline">
                         <input type="radio" id="customRadioInline2" name="customRadioInline1" value="branch" class="custom-control-input" onchange="getQualified(event)">
                         <label class="custom-control-label cursor-pointer" id="branch-button" for="customRadioInline2">Branch</label>
+                    </div>*@
+
+                    <div class="col-md-12">
+                        <div class="col-md-3">
+                            Region
+                            <select id="regionId" name="slct1">
+                                <option value=""></option>
+                                <option value="l">LAGOS</option>
+                                <option value="n">NORTH</option>
+                                <option value="sess">SOUTHEAST&SOUTHSOUTH</option>
+                                <option value="sw">SOUTHWEST</option>
+                            </select>
+                        </div>
+
+                        @*<hr/>*@
+                        <div class="col-md-3">
+                            Zone
+                            <select id="zoneId" name="slct2">
+                                <option value=""></option>
+                                <option value="l2"></option>
+                                <option value="n2">NORTH</option>
+                                <option value="sess2">SOUTHEAST&SOUTHSOUTH</option>
+                                <option value="sw2">SOUTHWEST</option>
+                            </select>
+                        </div>
+                        
+                        <div class="col-md-6">
+                            Branch
+                            <select id="branchId" name="slct3">
+                                <option value=""></option>
+                                <option value="branchId"></option>
+                                <option value="n3">Ikeja</option>
+                                <option value="sess3">Surulere</option>
+                                <option value="sw3">Apapa</option>
+                            </select>
+                        </div>
                     </div>
-                </div>
+                       
+                        @*<div class="form-group">
+                @Html.LabelFor(model => model., htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.State, ViewBag.state as List<SelectListItem>, new { style = "width: 200px;" })
+
+                @Html.ValidationMessageFor(model => model.State, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.City, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.City, new SelectList(string.Empty, "Value", "Text"), "--Select City--", new { style = "width:200px" })
+
+                 @Html.ValidationMessageFor(model => model.City, "", new { @class = "text-danger" })
+            </div>
+        </div>*@
+                    </div>
                 <div>
                     <button id="view-winners-button" class="border-1 rounded-0 border-white text-white btn btn-outline-dark mr-2 pl-2 pr-2 border-radius-0">View Winners</button>
                 </div>
@@ -37,7 +94,7 @@
             <div class="d-flex justify-content-between">
                 <div class="w-50 m-0 text-white">
                     <h5 class="float-left mr-2 text-white line-height-40px">No of Enteries:</h5>
-                    <h5 class="text-white line-height-40px" id="EntriesNo" onchange="getNumberEntries()">0.00</h5>
+                    <h5 class="text-white line-height-40px" id="EntriesNo" name="NoOfEntiries" ></h5>
                 </div>
                 <div class="d-flex justify-content-end align-content-end">
                     <button id="start-button" class="border-1 rounded-0 border-white text-white btn btn-lg btn-outline-dark mr-2 pl-2 pr-2 border-radius-0">Start</button>

@@ -24,12 +24,19 @@ namespace MillionaireWinnerPicker.Models
             bool isValidUser = false;
             int thisUserId = 0;
 
+            var ans = obj.GetUserAdFullDetails(UserId, password, appId, appKey);
+
             try
             {
-                if((UserId != "") && (password != ""))
+                if(ans != null && ans.Response.Equals("00"))
                 {
                     return true;
                 }
+                else
+                {
+                    return false;
+                }
+
             }
             catch (Exception ex)
             {

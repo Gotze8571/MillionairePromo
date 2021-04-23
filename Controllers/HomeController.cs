@@ -25,36 +25,58 @@ namespace MillionaireWinnerPicker.Controllers
 
         public ActionResult Index()
         {
+            //int NoOfEntiries = QualifiedMillionaireManager.NoOfEntries();
+            //if (NoOfEntiries >= 0)
+            //{
+            //    return this.Json(JsonConvert.SerializeObject(NoOfEntiries), JsonRequestBehavior.AllowGet);
+            //}
+            //return View(NoOfEntiries);
+
             return View();
         }
 
-        [HttpGet, ActionName("getbranchmillionaires")]
-        public ActionResult GetQualifiedMillionairesByBranch()
+        [HttpGet, ActionName("getZone")]
+        public ActionResult GetQualifiedMillionairesByZone(string regCode)
         {
-            //var qualifiedMillionairesList = this.db.QualifiedMillionaires_GetList();
-            var qualifiedMillionairesList = QualifiedMillionaireManager.GetList();
-            //var randomBranch = qualifiedMillionairesList.Select(x => x.)
+            var qualifiedMillionairesList = QualifiedMillionaireManager.GetZoneList(regCode).Select(c => new { Id = c.ZoneCode, Name = c.ZoneName }).ToList();
+            return this.Json(JsonConvert.SerializeObject(qualifiedMillionairesList.ToList()), JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpGet, ActionName("getRegion")]
+        public ActionResult GetQualifiedMillionairesByDistinctRegion()
+        {
+            var qualifiedMillionairesList = QualifiedMillionaireManager.GetRegionList().Select(c => new { Id = c.RegionCode, Name = c.RegionName }).ToList();
+            return this.Json(JsonConvert.SerializeObject(qualifiedMillionairesList.ToList()), JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpGet, ActionName("getzonemillionaires")]
+        public ActionResult GetQualifiedMillionairesWinnerByZone(string zoneCode)
+        {
+            var qualifiedMillionairesList = QualifiedMillionaireManager.GetZoneWinnerList(zoneCode);
+            return this.Json(JsonConvert.SerializeObject(qualifiedMillionairesList.ToList()), JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpGet, ActionName("getbranchmillionaires")]
+        public ActionResult GetQualifiedMillionairesWinnerByBranch(string branchCode)
+        {
+            var qualifiedMillionairesList = QualifiedMillionaireManager.GetBranchWinnerList(branchCode);
             return this.Json(JsonConvert.SerializeObject(qualifiedMillionairesList.ToList()), JsonRequestBehavior.AllowGet);
         }
 
         [HttpGet, ActionName("getregionalmillionaires")]
-        public ActionResult GetQualifiedMillionairesByRegion()
+        public ActionResult GetQualifiedMillionairesWinnerByRegion(string regCode)
         {
-            //var qualifiedMillionairesList = this.db.QualifiedMillionaires_GetList();
-            var qualifiedMillionairesList = QualifiedMillionaireManager.GetQualified1MillionList();
+            var qualifiedMillionairesList = QualifiedMillionaireManager.GetRegionWinnerList(regCode);
             return this.Json(JsonConvert.SerializeObject(qualifiedMillionairesList.ToList()), JsonRequestBehavior.AllowGet);
         }
 
-        //[HttpPost, ActionName("admitwinner")]
+        [HttpPost, ActionName("admitwinner")]
         public ActionResult AdmitWinner(QualifiedMillionaire qualifiedMillionaireWinner)
         {
             try
             {
-                //var qualifiedWinnerList = QualifiedMillionaireManager.AddNew(qualifiedMillionaireWinner);
-                var qualifiedWinnerList = QualifiedMillionaireManager.AddNew(qualifiedMillionaireWinner);
+                var qualifiedWinnerList = QualifiedMillionaireManager.InsertWinners(qualifiedMillionaireWinner);
                 return this.Json(new { winner = qualifiedMillionaireWinner }, JsonRequestBehavior.AllowGet);
-                //this.db.QualifiedMillionaire.Add(qualifiedMillionaireWinner);
-                //this.db.SaveChanges();
             }
             catch (Exception ex)
             {
@@ -78,34 +100,44 @@ namespace MillionaireWinnerPicker.Controllers
         //    return this.Json(new { winner = qualifiedMillionaireWinner }, JsonRequestBehavior.AllowGet);
         //}
 
-        //[HttpGet, ActionName("viewmillionaires")]
-        public ActionResult GetWinners()
+       [HttpGet, ActionName("GetWinners")]
+        public ActionResult GetWinners(int? page)
         {
-            //var qualifiedMillionairesList = this.db.QualifiedMillionaireWinners.ToList();
-            var qualifiedMillionairesList = QualifiedMillionaireManager.GetList();
-            return PartialView(qualifiedMillionairesList);
+            var logger = NLog.LogManager.GetCurrentClassLogger();
+            logger.Info(DateTime.Now);
+
+            int pageNumber = (page ?? 1);
+            const int pageSize = 20;
+
+            try
+            {
+                var qualifiedMillionairesList = QualifiedMillionaireManager.GetList();
+                return PartialView(qualifiedMillionairesList);
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex);
+            }
+
+            return null;
         }
 
         // Get no. of winners in a List.
-        public ActionResult GetCountOfMillionaires(int entry)
+        [HttpGet, ActionName("getnoOfEntries")]
+        public ActionResult GetCountOfMillionaires()
         {
-            var NoOfEntiries = QualifiedMillionaireManager.NoOfEntries(entry);
+            var NoOfEntiries = QualifiedMillionaireManager.NoOfEntries();
             return this.Json(JsonConvert.SerializeObject(NoOfEntiries), JsonRequestBehavior.AllowGet);
         }
 
-        public ActionResult About()
-        {
-            ViewBag.Message = "Your application description page.";
-
-            return View();
-        }
-
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
-        }
+        // Get: Region/Branch
+        //public ActionResult AddRegionalList(QualifiedMillionaire regional)
+        //{
+        //    var regionlist = QualifiedMillionaireManager.GetMillionaireListByRegion(regional);
+        //    return null;
+        //}
+        // Get: Branch/Zone
+       
         public ActionResult SPLViewToPdf()
         {
             QualifiedMillionaireDB db = new QualifiedMillionaireDB();
