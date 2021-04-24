@@ -80,7 +80,7 @@ namespace MillionaireWinnerPicker.Controllers
             }
             catch (Exception ex)
             {
-                //
+                throw ex;
             }
             return null;
         }
