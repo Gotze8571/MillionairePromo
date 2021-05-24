@@ -12,5 +12,6 @@ namespace MillionaireWinnerPicker.Models
         public int UserId { get; set; }
         public string StaffId { get; set; }
         public string UserName { get; set; }
+        public DateTime TimeStamp { get; set; }
     }
 }

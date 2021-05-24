@@ -152,6 +152,15 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202105240900092_FirstMigration.cs" />
+    <Compile Include="Migrations\202105240900092_FirstMigration.Designer.cs">
+      <DependentUpon>202105240900092_FirstMigration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202105241027184_add-migrations.cs" />
+    <Compile Include="Migrations\202105241027184_add-migrations.Designer.cs">
+      <DependentUpon>202105241027184_add-migrations.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AuditTrail\Export.cs" />
     <Compile Include="Models\AuditTrail\Login.cs" />
     <Compile Include="Models\LoginUserDb.cs">
@@ -300,6 +309,14 @@
       <Project>{b34d4b64-9fa0-4aad-a45e-f478de57cee2}</Project>
       <Name>Promo.Picker.Core</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\202105240900092_FirstMigration.resx">
+      <DependentUpon>202105240900092_FirstMigration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202105241027184_add-migrations.resx">
+      <DependentUpon>202105241027184_add-migrations.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

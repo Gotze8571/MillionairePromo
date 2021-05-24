@@ -1,4 +1,5 @@
 ﻿using MillionaireWinnerPicker.Models;
+using MillionaireWinnerPicker.Models.AuditTrail;
 using NLog;
 using System;
 using System.Collections.Generic;
@@ -23,7 +24,7 @@ namespace MillionaireWinnerPicker.Controllers
 
         [HttpPost]
        // [ValidateAntiForgeryToken]
-        public ActionResult Index(User user, string returnUrl)
+        public ActionResult Index(UserAd user, string returnUrl)
         {
             logger.Info("NEW LOGIN");
 
@@ -38,8 +39,7 @@ namespace MillionaireWinnerPicker.Controllers
                     //ViewBag.Message = hostName;
                     ViewBag.Message = machineName;
                     Session["hostName"] = machineName;
-                    if (login.ValidLogin(user.UserId, user.Password, machineName))
-                    //if (login.ValidLogin(user.UserId, user.Password, hostName))
+                    if (login.ValidLogin(user.UserId, user.Password, machineName))                    
                     {
                         FormsAuthentication.SetAuthCookie(user.UserId, true);
 
@@ -48,6 +48,7 @@ namespace MillionaireWinnerPicker.Controllers
                         string UserId = Session["user.UserId"] as string;
 
                         Session["user.UserId"] = user.UserId;
+                        
                         logger.Info("IP Address: " + UserIPAddress.GetIPAddress());
                         //logger.Info("IP Address: " + hostName);
                         logger.Info("IP Address: " + machineName);
@@ -58,8 +59,8 @@ namespace MillionaireWinnerPicker.Controllers
                     }
                     else
                     {
-                        ModelState.AddModelError("message", "incorrect login details!");
-                        ViewBag.Message = "Incorrect login details";
+                        ModelState.AddModelError("message", "Unauthorized User!!");
+                        ViewBag.Message = "Unauthorized User!!";
                         logger.Info("Incorrect login details");
                         // return RedirectToAction("Index", "Login");
                         return View();
@@ -68,6 +69,7 @@ namespace MillionaireWinnerPicker.Controllers
                 catch (Exception ex)
                 {
                     ModelState.AddModelError("message", "Unable to connect to server");
+                    ViewBag.Message = "Unable to connect to server!!";
                     logger.Error(ex);
                 }
             }

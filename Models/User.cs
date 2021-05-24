@@ -6,12 +6,11 @@ using System.Web;
 
 namespace MillionaireWinnerPicker.Models
 {
-    public class User
+    public class UserAd
     {
-        [Required]
+        [Key]
+        public int Id { get; set; }
         public string UserId { get; set; }
-
-        [Required]
         public string Password { get; set; }
     }
 }

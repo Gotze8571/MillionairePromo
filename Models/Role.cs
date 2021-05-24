@@ -12,4 +12,14 @@ namespace MillionaireWinnerPicker.Models
         public int RoleId { get; set; }
         public string RoleName { get; set; }
     }
+    //public class UserRole
+    //{
+    //    [Key]
+    //    public int Id { get; set; }
+    //    public int RoleId { get; set; }
+    //    public int UserId { get; set; }
+
+    //    public virtual Role Role { get; set; }
+    //    public virtual UserIdentity User { get; set; }
+    //}
 }

@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using MillionaireWinnerPicker.DAL;
+using MillionaireWinnerPicker.Models.AuditTrail;
 //using DataAccessLayer.DataAccessLayer;
 using Newtonsoft.Json;
 using Promo.Picker.Core.BuisnessLogic;
@@ -17,12 +19,14 @@ namespace MillionaireWinnerPicker.Controllers
         //DataAccessLayerEntities db;
         Promo.Picker.Core.BuisnessLogic.QualifiedMillionaireManager qualified = new Promo.Picker.Core.BuisnessLogic.QualifiedMillionaireManager();
         Promo.Picker.Core.DataAccess.QualifiedMillionaireDB db = new Promo.Picker.Core.DataAccess.QualifiedMillionaireDB();
+        private readonly RoleDBContext context;
 
         //public HomeController()
         //{
         //    this.db = new DataAccessLayerEntities();
         //}
 
+        [Authorize]
         public ActionResult Index()
         {
             //int NoOfEntiries = QualifiedMillionaireManager.NoOfEntries();
@@ -31,6 +35,20 @@ namespace MillionaireWinnerPicker.Controllers
             //    return this.Json(JsonConvert.SerializeObject(NoOfEntiries), JsonRequestBehavior.AllowGet);
             //}
             //return View(NoOfEntiries);
+
+            //Session["pUser"] = UserId;
+
+            //Login loginUser = new Login
+            //{
+            //    Name = UserId,
+            //    Group = userGroup,
+            //    Date = DateTime.Now,
+            //    IPAddress = UserIPAddress.GetIPAddress(),
+            //    HostName = machineName
+            //};
+
+            //context.Logins.Add(loginUser);
+            //context.SaveChanges();
 
             return View();
         }
