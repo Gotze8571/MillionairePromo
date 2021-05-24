@@ -35,6 +35,15 @@ namespace MillionaireWinnerPicker.Controllers
             return View();
         }
 
+        
+
+        [HttpGet, ActionName("getRegion")]
+        public ActionResult GetQualifiedMillionairesByDistinctRegion()
+        {
+            var qualifiedMillionairesList = QualifiedMillionaireManager.GetRegionList().Select(c => new { Id = c.RegionCode, Name = c.RegionName }).ToList();
+            return this.Json(JsonConvert.SerializeObject(qualifiedMillionairesList.ToList()), JsonRequestBehavior.AllowGet);
+        }
+
         [HttpGet, ActionName("getZone")]
         public ActionResult GetQualifiedMillionairesByZone(string regCode)
         {
@@ -42,10 +51,11 @@ namespace MillionaireWinnerPicker.Controllers
             return this.Json(JsonConvert.SerializeObject(qualifiedMillionairesList.ToList()), JsonRequestBehavior.AllowGet);
         }
 
-        [HttpGet, ActionName("getRegion")]
-        public ActionResult GetQualifiedMillionairesByDistinctRegion()
+
+        [HttpGet, ActionName("getBranch")]
+        public ActionResult GetQualifiedMillionairesByBranch(string zoneCode)
         {
-            var qualifiedMillionairesList = QualifiedMillionaireManager.GetRegionList().Select(c => new { Id = c.RegionCode, Name = c.RegionName }).ToList();
+            var qualifiedMillionairesList = QualifiedMillionaireManager.GetBranchList(zoneCode).Select(c => new { Id = c.BranchCode, Name = c.BranchName }).ToList();
             return this.Json(JsonConvert.SerializeObject(qualifiedMillionairesList.ToList()), JsonRequestBehavior.AllowGet);
         }
 
@@ -69,6 +79,15 @@ namespace MillionaireWinnerPicker.Controllers
             var qualifiedMillionairesList = QualifiedMillionaireManager.GetRegionWinnerList(regCode);
             return this.Json(JsonConvert.SerializeObject(qualifiedMillionairesList.ToList()), JsonRequestBehavior.AllowGet);
         }
+
+
+        [HttpGet, ActionName("getmillionaires")]
+        public ActionResult GetQualifiedMillionairesWinner()
+        {
+            var qualifiedMillionairesList = QualifiedMillionaireManager.GetList();
+            return this.Json(JsonConvert.SerializeObject(qualifiedMillionairesList.ToList()), JsonRequestBehavior.AllowGet);
+        }
+
 
         [HttpPost, ActionName("admitwinner")]
         public ActionResult AdmitWinner(QualifiedMillionaire qualifiedMillionaireWinner)
