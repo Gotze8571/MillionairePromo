@@ -1,0 +1,82 @@
+﻿@model IEnumerable<Promo.Picker.Core.BusinessObject.QualifiedMillionaire>
+
+
+@*<div id="excelbtn" style="float:right" class="form-group">
+    @Html.ActionLink("Clear Page", "SaveToAnotherTable", "", new { @class = "btn btnClass", startDate = ViewBag.startDate, endDate = ViewBag.endDate })
+</div>*@
+
+<div id="excelbtn" style="float:right" class="form-group">
+    @Html.ActionLink("Export To Excel", "ExportToExcel", "", new { @class = "btn btnClass", startDate = ViewBag.startDate, endDate = ViewBag.endDate })
+</div>
+
+<div id="pdfbtn" style="float:right" class="form-group">
+    @Html.ActionLink("Export To Pdf", "PromoViewToPdf", "", new { startDate = ViewBag.startDate, endDate = ViewBag.endDate }, new { @class = "btn btnClass", startDate = ViewBag.startDate, endDate = ViewBag.endDate })
+</div>
+@*<div class="custom-control custom-radio custom-control-inline">
+    Checkbox A:
+   
+    <input type="checkbox" id="myCheck" onclick="myFunction()">
+
+    <p id="text" style="display:none">Checkbox A is CHECKED!</p>
+</div>
+<div class="custom-control custom-radio custom-control-inline">
+    
+    Checkbox B: 
+    <input type="checkbox" id="myCheck" onclick="myFunction()">
+
+    <p id="text" style="display:none">Checkbox B is CHECKED!</p>
+</div>
+<div class="custom-control custom-radio custom-control-inline">
+   
+    Checkbox C: 
+    <input type="checkbox" id="myCheck" onclick="myFunction()">
+    <p id="text" style="display:none">Checkbox C is CHECKED!</p>
+</div>*@
+<table class="table table-light">
+    <thead>
+        <tr>
+            <th>
+                Account No.:
+            </th>
+            <th>
+                Account Name:
+            </th>
+            <th>
+                Mobile No.:
+            </th>
+            <th>
+                Branch Code:
+            </th>
+            <th>
+                Date:
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AccountNo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AccountName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MobileNo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BranchCode)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PostedDate)
+                </td>
+                <td>
+                    @*@Html.ActionLink("Delete", "Delete", new { id = item.Id })*@
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

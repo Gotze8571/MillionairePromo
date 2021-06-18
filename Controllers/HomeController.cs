@@ -11,6 +11,7 @@ using Promo.Picker.Core.BuisnessLogic;
 using Promo.Picker.Core.BusinessObject;
 using Promo.Picker.Core.BusinessObject.Collections;
 using Promo.Picker.Core.DataAccess;
+using Rotativa;
 
 namespace MillionaireWinnerPicker.Controllers
 {
@@ -175,18 +176,20 @@ namespace MillionaireWinnerPicker.Controllers
         //}
         // Get: Branch/Zone
        
-        public ActionResult SPLViewToPdf()
+        public ActionResult PromoViewToPdf()
         {
             QualifiedMillionaireDB db = new QualifiedMillionaireDB();
 
             QualifiedMillionaireList list = new QualifiedMillionaireList();
-            //list = db.;
+
+            //var report = new ActionAsPdf("GetWinnersPdf.cshtml");
+            //return report;
 
 
             //logger.Info("SPL Report exported successfully");
 
 
-            //return new PartialViewAsPdf("~/Views/Shared/ExportToPdfSPL.cshtml", list)
+            //return new PartialViewAsPdf("~/Views/Shared/GetWinnersPdf..cshtml", list)
             //{
             //    //FileName = Server.MapPath("~/Content/Relato.pdf"),
             //    PageOrientation = Rotativa.Options.Orientation.Landscape,
