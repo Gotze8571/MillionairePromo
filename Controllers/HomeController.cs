@@ -197,5 +197,13 @@ namespace MillionaireWinnerPicker.Controllers
             //};
             return null;
         }
+
+        public FileContentResult ExportToExcel()
+        {
+            QualifiedMillionaireList list = new QualifiedMillionaireList();
+            QualifiedMillionaireManager reportManger = new QualifiedMillionaireManager();
+            //list = 
+            return null;
+        }
     }
 }
