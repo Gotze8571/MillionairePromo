@@ -169,6 +169,10 @@
     <Compile Include="Migrations\202105241027184_add-migrations.Designer.cs">
       <DependentUpon>202105241027184_add-migrations.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202106210534488_NewStartter-Promo.cs" />
+    <Compile Include="Migrations\202106210534488_NewStartter-Promo.Designer.cs">
+      <DependentUpon>202106210534488_NewStartter-Promo.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AuditTrail\Export.cs" />
     <Compile Include="Models\AuditTrail\Login.cs" />
@@ -329,6 +333,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202105241027184_add-migrations.resx">
       <DependentUpon>202105241027184_add-migrations.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202106210534488_NewStartter-Promo.resx">
+      <DependentUpon>202106210534488_NewStartter-Promo.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

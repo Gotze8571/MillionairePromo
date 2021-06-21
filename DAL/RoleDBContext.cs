@@ -18,6 +18,7 @@ namespace MillionaireWinnerPicker.DAL
         public DbSet<UserIdentity> UserIdentities { get; set; }
         public DbSet<UserRole> UserRoles { get; set; }
         public DbSet<Role> Roles { get; set; }
+        public DbSet<Export> Exports { get; set; }
         public System.Data.Entity.DbSet<UserAd> Users { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

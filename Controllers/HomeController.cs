@@ -7,16 +7,19 @@ using MillionaireWinnerPicker.DAL;
 using MillionaireWinnerPicker.Models.AuditTrail;
 //using DataAccessLayer.DataAccessLayer;
 using Newtonsoft.Json;
+using NLog;
 using Promo.Picker.Core.BuisnessLogic;
 using Promo.Picker.Core.BusinessObject;
 using Promo.Picker.Core.BusinessObject.Collections;
 using Promo.Picker.Core.DataAccess;
+using Promo.Picker.Core.Extensions;
 using Rotativa;
 
 namespace MillionaireWinnerPicker.Controllers
 {
     public class HomeController : Controller
     {
+        private static Logger logger = LogManager.GetCurrentClassLogger();
         //DataAccessLayerEntities db;
         Promo.Picker.Core.BuisnessLogic.QualifiedMillionaireManager qualified = new Promo.Picker.Core.BuisnessLogic.QualifiedMillionaireManager();
         Promo.Picker.Core.DataAccess.QualifiedMillionaireDB db = new Promo.Picker.Core.DataAccess.QualifiedMillionaireDB();
@@ -30,6 +33,9 @@ namespace MillionaireWinnerPicker.Controllers
         [Authorize]
         public ActionResult Index()
         {
+            string UserId = Session["UserId"] as string;
+            string userGroup = Session["Group"] as string;
+
             //int NoOfEntiries = QualifiedMillionaireManager.NoOfEntries();
             //if (NoOfEntiries >= 0)
             //{
@@ -44,8 +50,8 @@ namespace MillionaireWinnerPicker.Controllers
             //    Name = UserId,
             //    Group = userGroup,
             //    Date = DateTime.Now,
-            //    IPAddress = UserIPAddress.GetIPAddress(),
-            //    HostName = machineName
+            //    IPAddress = "null",
+            //    HostName = "null"
             //};
 
             //context.Logins.Add(loginUser);
@@ -114,6 +120,7 @@ namespace MillionaireWinnerPicker.Controllers
             try
             {
                 var qualifiedWinnerList = QualifiedMillionaireManager.InsertWinners(qualifiedMillionaireWinner);
+                
                 return this.Json(new { winner = qualifiedMillionaireWinner }, JsonRequestBehavior.AllowGet);
             }
             catch (Exception ex)
@@ -150,6 +157,7 @@ namespace MillionaireWinnerPicker.Controllers
             try
             {
                 var qualifiedMillionairesList = QualifiedMillionaireManager.GetList();
+                logger.Info("Qualified Winners no of entries:" + qualifiedMillionairesList);
                 return PartialView(qualifiedMillionairesList);
             }
             catch (Exception ex)
@@ -165,7 +173,9 @@ namespace MillionaireWinnerPicker.Controllers
         public ActionResult GetCountOfMillionaires()
         {
             var NoOfEntiries = QualifiedMillionaireManager.NoOfEntries();
+            logger.Info("Qualified Winners no of entries:" + NoOfEntiries);
             return this.Json(JsonConvert.SerializeObject(NoOfEntiries), JsonRequestBehavior.AllowGet);
+
         }
 
         // Get: Region/Branch
@@ -180,30 +190,41 @@ namespace MillionaireWinnerPicker.Controllers
         {
             QualifiedMillionaireDB db = new QualifiedMillionaireDB();
 
-            QualifiedMillionaireList list = new QualifiedMillionaireList();
-
-            //var report = new ActionAsPdf("GetWinnersPdf.cshtml");
-            //return report;
-
-
-            //logger.Info("SPL Report exported successfully");
-
-
-            //return new PartialViewAsPdf("~/Views/Shared/GetWinnersPdf..cshtml", list)
-            //{
-            //    //FileName = Server.MapPath("~/Content/Relato.pdf"),
-            //    PageOrientation = Rotativa.Options.Orientation.Landscape,
-            //    PageSize = Rotativa.Options.Size.A4
-            //};
-            return null;
+            var qualifiedMillionairesList = QualifiedMillionaireManager.GetList();
+            logger.Info("Qualified Winners Report exported successfully");
+            return new PartialViewAsPdf("~/Views/Home/GetWinnersPdf.cshtml", qualifiedMillionairesList)
+            {
+                //FileName = Server.MapPath("~/Content/Relato.pdf"),
+                PageOrientation = Rotativa.Options.Orientation.Landscape,
+                PageSize = Rotativa.Options.Size.A4
+            };
+            
+            
         }
 
         public FileContentResult ExportToExcel()
         {
-            QualifiedMillionaireList list = new QualifiedMillionaireList();
-            QualifiedMillionaireManager reportManger = new QualifiedMillionaireManager();
-            //list = 
-            return null;
+            //QualifiedMillionaireList list = new QualifiedMillionaireList();
+            //QualifiedMillionaireManager reportManger = new QualifiedMillionaireManager();
+            var list = QualifiedMillionaireManager.GetList();
+
+            //SimbrellaLoanList list = new SimbrellaLoanList();
+            //list = report.GetSimbrellaLoanDb(startDate, endDate, CustId);
+            string[] columns = { "Id", "AccountNo", "AccountName", "MobileNo", "BranchCode", "PostedDate"};
+            byte[] filecontent = ExcelExportHelper.ExportExcel(list, "", true, columns);
+            logger.Info("Qualified Winners Report exported successfully");
+            string userId = Session["UserId"] as string;
+            Export export = new Export
+            {
+                ExportedDate = DateTime.Now,
+                ReportName = "SimbrellaLoanOffer",
+                LoginUser = userId
+            };
+            context.Exports.Add(export);
+            context.SaveChanges();
+            return File(filecontent, ExcelExportHelper.ExcelContentType, "PromoWinner.xlsx");
+            logger.Info("Qualified Winners Report exported successfully");
+            //return null;
         }
     }
 }
