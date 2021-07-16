@@ -214,14 +214,14 @@ namespace MillionaireWinnerPicker.Controllers
             byte[] filecontent = ExcelExportHelper.ExportExcel(list, "", true, columns);
             logger.Info("Qualified Winners Report exported successfully");
             string userId = Session["UserId"] as string;
-            Export export = new Export
-            {
-                ExportedDate = DateTime.Now,
-                ReportName = "SimbrellaLoanOffer",
-                LoginUser = userId
-            };
-            context.Exports.Add(export);
-            context.SaveChanges();
+            //Export export = new Export
+            //{
+            //    ExportedDate = DateTime.Now,
+            //    ReportName = "SimbrellaLoanOffer",
+            //    LoginUser = userId
+            //};
+            //context.Exports.Add(export);
+            //context.SaveChanges();
             return File(filecontent, ExcelExportHelper.ExcelContentType, "PromoWinner.xlsx");
             logger.Info("Qualified Winners Report exported successfully");
             //return null;

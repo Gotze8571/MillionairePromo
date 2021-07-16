@@ -107,10 +107,6 @@ $(document).ready(function () {
     $("#return-button").click(function () {
         returnToLotteryBoard()
     })
-
-
-    
-
 });
 
 function qualifiedMillionairesList(critatia) {

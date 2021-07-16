@@ -51,6 +51,9 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="EPPlus, Version=4.5.3.1, Culture=neutral, PublicKeyToken=ea159fdaa78159a1, processorArchitecture=MSIL">
+      <HintPath>packages\EPPlus.4.5.3.1\lib\net40\EPPlus.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
       <HintPath>packages\NLog.4.7.6\lib\net45\NLog.dll</HintPath>
@@ -61,6 +64,7 @@
     <Reference Include="PagedList.Mvc, Version=4.5.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
       <HintPath>packages\PagedList.Mvc.4.5.0.0\lib\net40\PagedList.Mvc.dll</HintPath>
     </Reference>
+    <Reference Include="PresentationCore" />
     <Reference Include="Rotativa, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>packages\Rotativa.1.6.3\lib\net40\Rotativa.dll</HintPath>
     </Reference>
@@ -69,6 +73,7 @@
     <Reference Include="System.Drawing" />
     <Reference Include="System.IO.Compression" />
     <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.ServiceModel" />
     <Reference Include="System.Transactions" />
     <Reference Include="System.Web.DynamicData" />
@@ -172,6 +177,10 @@
     <Compile Include="Migrations\202106210534488_NewStartter-Promo.cs" />
     <Compile Include="Migrations\202106210534488_NewStartter-Promo.Designer.cs">
       <DependentUpon>202106210534488_NewStartter-Promo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202106221752515_RetailEr-New.cs" />
+    <Compile Include="Migrations\202106221752515_RetailEr-New.Designer.cs">
+      <DependentUpon>202106221752515_RetailEr-New.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AuditTrail\Export.cs" />
@@ -336,6 +345,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202106210534488_NewStartter-Promo.resx">
       <DependentUpon>202106210534488_NewStartter-Promo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202106221752515_RetailEr-New.resx">
+      <DependentUpon>202106221752515_RetailEr-New.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
