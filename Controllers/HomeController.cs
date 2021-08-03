@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using MillionaireWinnerPicker.DAL;
@@ -99,10 +100,10 @@ namespace MillionaireWinnerPicker.Controllers
         }
 
         [HttpGet, ActionName("getregionalmillionaires")]
-        public ActionResult GetQualifiedMillionairesWinnerByRegion(string regCode)
+        public async Task<ActionResult> GetQualifiedMillionairesWinnerByRegion(string regCode)
         {
-            var qualifiedMillionairesList = QualifiedMillionaireManager.GetRegionWinnerList(regCode);
-            return this.Json(JsonConvert.SerializeObject(qualifiedMillionairesList.ToList()), JsonRequestBehavior.AllowGet);
+            var qualifiedMillionairesList =  QualifiedMillionaireManager.GetRegionWinnerList(regCode);
+            return  this.Json(JsonConvert.SerializeObject(qualifiedMillionairesList.ToList()), JsonRequestBehavior.AllowGet);
         }
 
 
